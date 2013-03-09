@@ -46,7 +46,10 @@ module ThorOptions
       end
 
       check_requirement!
-      @assigns
+
+      assigns = ThorOptions::HashWithIndifferentAccess.new(@assigns)
+      assigns.freeze
+      assigns
     end
 
     def remaining

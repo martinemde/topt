@@ -1,3 +1,6 @@
+require 'thor_options/arguments'
+require 'thor_options/argument'
+require 'thor_options/options'
 require 'thor_options/option'
 
 module ThorOptions
@@ -143,8 +146,8 @@ module ThorOptions
     # Parse declared arguments from the given argument array, returning
     # a hash of argument name and values, and an array of remaining args.
     def parse_arguments(to_parse)
-      thor_args = ThorOptions::Arguments.new(@arguments)
-      thor_args.parse(to_parse)
+      args_parser = ThorOptions::Arguments.new(@arguments)
+      [args_parser.parse(to_parse), args_parser.remaining]
     end
   end
 end

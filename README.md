@@ -16,7 +16,7 @@ a full stack command line library.
       option :number, type: :boolean, aliases: %w[-n],
         desc: "Number the output lines, starting at 1."
 
-      argment :filename
+      argument :filename
 
       def initialize(given_args=ARGV)
         @arguments, @options, @extras = self.class.parse_options!(given_args)
@@ -35,6 +35,11 @@ a full stack command line library.
         end
       end
     end
+
+    Kat.new(ARGV).call
+
+    $ kat -n file
+
 
 ## Credit
 

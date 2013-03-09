@@ -8,6 +8,18 @@ require 'thor_options/parser'
 # Instantiating directly can really make your command easy to understand,
 # since there is very little magic going on at that point.
 module ThorOptions
+  class Error < StandardError
+  end
+
+  class UnknownArgumentError < Error
+  end
+
+  class RequiredArgumentMissingError < Error
+  end
+
+  class MalformattedArgumentError < Error
+  end
+
   def options_parser
     @parser ||= Parser.new
   end

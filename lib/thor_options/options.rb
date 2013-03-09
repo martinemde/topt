@@ -1,4 +1,5 @@
-require 'engineyard-deploy-hook/core_ext/hash_with_indifferent_access'
+require 'thor_options/arguments'
+require 'thor_options/hash_with_indifferent_access'
 
 module ThorOptions
   class Options < Arguments #:nodoc:
@@ -85,7 +86,7 @@ module ThorOptions
 
       check_requirement!
 
-      assigns = EY::DeployHook::CoreExt::HashWithIndifferentAccess.new(@assigns)
+      assigns = ThorOptions::HashWithIndifferentAccess.new(@assigns)
       assigns.freeze
       assigns
     end
