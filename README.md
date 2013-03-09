@@ -1,45 +1,50 @@
-# Thor Options
+# ThorOptions
 
-A replacement for OptionParser with extended parsing capabilites
-originally available only with [Thor](https://github.com/wycats/thor),
-a full stack command line library.
+A replacement for Ruby's OptionParser (optparse).
+
+Provides extended options parsing, compared to optparse, using [Thor](https://github.com/wycats/thor)'s
+options parsing system.
+
+## About
+
+This is still a very fresh extraction. I haven't created any specs yet, so use with caution.
+
+Open an issue if you want to use this but you're scared.
 
 ## Example
 
-    # My own implementation of `cat` that takes less options.
-    class Kat
+See the examples directory from examples.
+
+    class Command
       extend ThorOptions
 
-      option :blank, type: :boolean, aliases: %w[-b],
-        desc: "Number the non-blank output lines, starting at 1."
-
-      option :number, type: :boolean, aliases: %w[-n],
-        desc: "Number the output lines, starting at 1."
-
+      option :verbose, type: :boolean, aliases: %w[-v], :default => false, desc: "Be noisy"
       argument :filename
 
       def initialize(given_args=ARGV)
         @arguments, @options, @extras = self.class.parse_options!(given_args)
+      rescue ThorOptions::Error => e
+        puts e.message
+        puts "Usage: command [--verbose] filename"
+        exit 1
       end
 
       def call
-        content = File.read(@arguments[:filename])
-        num = 1
-        content.each_line do |line|
-          if (@options[:number] || @options[:blank]) && !(@options[:blank] && line.strip.empty?)
-            puts "#{num.to_s.rjust(6)}\t#{line}"
-            num += 1
-          else
+        filename = @arguments[:filename]
+        puts "Opening file #{filename}" if @options[:verbose]
+
+        File.open(filename) do |f|
+          f.each_line do |line|
+            puts "outputting line #{line}" if @options[:verbose]
             puts line
           end
         end
+
+        puts "Done" if @options[:verbose]
       end
     end
 
-    Kat.new(ARGV).call
-
-    $ kat -n file
-
+    Command.new(ARGV).call
 
 ## Credit
 
