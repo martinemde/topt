@@ -1,9 +1,9 @@
-require 'thor_options/arguments'
-require 'thor_options/argument'
-require 'thor_options/options'
-require 'thor_options/option'
+require 'topt/arguments'
+require 'topt/argument'
+require 'topt/options'
+require 'topt/option'
 
-module ThorOptions
+module Topt
   class Parser
     attr_reader :options
     attr_reader :arguments
@@ -35,7 +35,7 @@ module ThorOptions
     # :hide     - If you want to hide this option from the help.
     #
     def option(name, opts)
-      @options[name] = ThorOptions::Option.new(name, opts)
+      @options[name] = Topt::Option.new(name, opts)
     end
 
     # Adds an argument to the class and creates an attr_accessor for it.
@@ -95,7 +95,7 @@ module ThorOptions
 
       opts[:required] = required
 
-      @arguments << ThorOptions::Argument.new(name, opts)
+      @arguments << Topt::Argument.new(name, opts)
     end
 
     # Removes a previous defined argument.
@@ -119,7 +119,7 @@ module ThorOptions
     def parse(given_args=ARGV, defaults_hash = {})
       # split inbound arguments at the first argument
       # that looks like an option (starts with - or --).
-      argv_args, argv_switches = ThorOptions::Options.split(given_args.dup)
+      argv_args, argv_switches = Topt::Options.split(given_args.dup)
 
       # Let Thor::Options parse the options first, so it can remove
       # declared options from the array. This will leave us with
@@ -139,14 +139,14 @@ module ThorOptions
     # Parse option switches array into options and remaining non-option
     # positional arguments.
     def parse_options(argv_switches, defaults_hash)
-      options_parser = ThorOptions::Options.new(@options, defaults_hash)
+      options_parser = Topt::Options.new(@options, defaults_hash)
       [options_parser.parse(argv_switches), options_parser.remaining]
     end
 
     # Parse declared arguments from the given argument array, returning
     # a hash of argument name and values, and an array of remaining args.
     def parse_arguments(to_parse)
-      args_parser = ThorOptions::Arguments.new(@arguments)
+      args_parser = Topt::Arguments.new(@arguments)
       [args_parser.parse(to_parse), args_parser.remaining]
     end
   end

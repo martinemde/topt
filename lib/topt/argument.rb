@@ -1,4 +1,4 @@
-module ThorOptions
+module Topt
   class Argument #:nodoc:
     VALID_TYPES = [ :numeric, :hash, :array, :string ]
 

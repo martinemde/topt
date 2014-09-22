@@ -2,10 +2,10 @@
 
 $:.unshift(File.expand_path('../lib', File.dirname(__FILE__)))
 
-require 'thor_options'
+require 'topt'
 
 class Kat
-  extend ThorOptions
+  extend Topt
 
   option :blank, type: :boolean, aliases: %w[-b],
     desc: "Number the non-blank output lines, starting at 1."

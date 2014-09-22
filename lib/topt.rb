@@ -1,4 +1,4 @@
-require 'thor_options/parser'
+require 'topt/parser'
 
 # Extend your class with this module to add Thor-like options methods.
 #
@@ -7,7 +7,7 @@ require 'thor_options/parser'
 #
 # Instantiating directly can really make your command easy to understand,
 # since there is very little magic going on at that point.
-module ThorOptions
+module Topt
   class Error < StandardError
   end
 

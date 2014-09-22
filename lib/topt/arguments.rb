@@ -1,4 +1,4 @@
-module ThorOptions
+module Topt
   class Arguments #:nodoc:
     NUMERIC = /(\d*\.\d+|\d+)/
 
@@ -47,7 +47,7 @@ module ThorOptions
 
       check_requirement!
 
-      assigns = ThorOptions::HashWithIndifferentAccess.new(@assigns)
+      assigns = Topt::HashWithIndifferentAccess.new(@assigns)
       assigns.freeze
       assigns
     end

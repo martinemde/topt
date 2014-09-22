@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path('../lib/thor_options/version', __FILE__)
+require File.expand_path('../lib/topt/version', __FILE__)
 
 Gem::Specification.new do |s|
   s.add_development_dependency 'bundler', '~> 1.0'
@@ -12,15 +12,15 @@ Gem::Specification.new do |s|
   s.authors = ['Yehuda Katz', 'José Valim', 'Martin Emde']
   s.description = %q{Thor compatible command line option parser. A replacement for Ruby's OptionParser (optparse).}
   s.summary = s.description
-  s.email = 'ruby-thor@googlegroups.com'
+  s.email = 'me@martinemed.com'
   s.executables = `git ls-files -- bin/*`.split("\n").map{|f| File.basename(f)}
   s.extra_rdoc_files = ['LICENSE.md', 'README.md']
   s.files = `git ls-files`.split("\n")
-  s.homepage = 'https://github.com/martinemde/thor_options'
-  s.name = 'thor_options'
+  s.homepage = 'https://github.com/martinemde/topt'
+  s.name = 'topt'
   s.rdoc_options = ['--charset=UTF-8']
   s.require_paths = ['lib']
   s.required_rubygems_version = Gem::Requirement.new('>= 1.3.6')
   s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.version = ThorOptions::VERSION
+  s.version = Topt::VERSION
 end

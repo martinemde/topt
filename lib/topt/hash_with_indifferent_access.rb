@@ -1,4 +1,4 @@
-module ThorOptions
+module Topt
   # A hash with indifferent access and magic predicates.
   #
   #   hash = Thor::CoreExt::HashWithIndifferentAccess.new 'foo' => 'bar', 'baz' => 'bee', 'force' => true

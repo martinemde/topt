@@ -1,9 +1,8 @@
-# ThorOptions
+# Topt
 
-A replacement for Ruby's OptionParser (optparse).
+A Thor compatible replacement for Ruby's OptionParser (optparse).
 
-Provides extended options parsing, compared to optparse, using [Thor](https://github.com/wycats/thor)'s
-options parsing system.
+Provides extended options parsing, compared to optparse, using a [Thor](https://github.com/wycats/thor) compatible option parser.
 
 ## About
 
@@ -16,14 +15,14 @@ Open an issue if you want to use this but you're scared.
 See the examples directory from examples.
 
     class Command
-      extend ThorOptions
+      extend Topt
 
       option :verbose, type: :boolean, aliases: %w[-v], :default => false, desc: "Be noisy"
       argument :filename
 
       def initialize(given_args=ARGV)
         @arguments, @options, @extras = self.class.parse_options!(given_args)
-      rescue ThorOptions::Error => e
+      rescue Topt::Error => e
         puts e.message
         puts "Usage: command [--verbose] filename"
         exit 1

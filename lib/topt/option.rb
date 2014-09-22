@@ -1,6 +1,6 @@
-require 'thor_options/argument'
+require 'topt/argument'
 
-module ThorOptions
+module Topt
   class Option < Argument #:nodoc:
     attr_reader :aliases, :group, :lazy_default, :hide
 

@@ -1,7 +1,7 @@
-require 'thor_options/arguments'
-require 'thor_options/hash_with_indifferent_access'
+require 'topt/arguments'
+require 'topt/hash_with_indifferent_access'
 
-module ThorOptions
+module Topt
   class Options < Arguments #:nodoc:
     LONG_RE     = /^(--\w+(?:-\w+)*)$/
     SHORT_RE    = /^(-[a-z])$/i
@@ -86,7 +86,7 @@ module ThorOptions
 
       check_requirement!
 
-      assigns = ThorOptions::HashWithIndifferentAccess.new(@assigns)
+      assigns = Topt::HashWithIndifferentAccess.new(@assigns)
       assigns.freeze
       assigns
     end
